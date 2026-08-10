@@ -78,7 +78,8 @@ def parse_seminars(page_html):
 
 def send_email(subject, body):
     address = os.environ.get("GMAIL_ADDRESS")
-    password = os.environ.get("GMAIL_APP_PASSWORD")
+    password = (os.environ.get("GMAIL_APP_PASSWORD") or "").replace(" ", "")
+    recipient = os.environ.get("EMAIL_TO") or address
     if not address or not password:
         print("GMAIL_ADDRESS/GMAIL_APP_PASSWORD not set; would have sent:")
         print(f"Subject: {subject}\n\n{body}")
@@ -86,7 +87,7 @@ def send_email(subject, body):
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = address
-    msg["To"] = address
+    msg["To"] = recipient
     msg.set_content(body)
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl_context()) as smtp:
         smtp.login(address, password)
