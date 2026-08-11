@@ -18,7 +18,8 @@ whenever a seminar is added to or removed from that list.
 
 - `GMAIL_ADDRESS` — the Gmail account to send from
 - `GMAIL_APP_PASSWORD` — a [Gmail App Password](https://myaccount.google.com/apppasswords) for that account
-- `EMAIL_TO` — recipient address (optional; defaults to `GMAIL_ADDRESS`)
+- `EMAIL_TO` — recipient address or comma-separated list of addresses
+  (optional; defaults to `GMAIL_ADDRESS`)
 
 ## Operations
 
